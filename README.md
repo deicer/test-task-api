@@ -1,4 +1,4 @@
-"# test-task-api" 
+
 ###Запуск докера:
 
 `$ docker-compose build`
