@@ -1,14 +1,14 @@
 
-###Запуск докера:
+### Запуск докера:
 
 `$ docker-compose build`
 
 `$ docker-compose up -d`
 
-###Консоль:
+### Консоль:
 `docker-compose exec php-fpm bash`
 
-###Composer Install:
+### Composer Install:
 
 `$ composer install`
 
