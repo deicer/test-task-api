@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+
+  php-fpm:
+    build: docker/php-fpm
+    restart: on-failure
+    container_name: php-fpm
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    build:
+      context: ./
+      dockerfile: docker/rabbitmq/Dockerfile
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    restart: on-failure
+    healthcheck:
+      timeout: 5s
+      interval: 5s
+      retries: 5
+      test: [ "CMD", "rabbitmqctl", "status" ]
